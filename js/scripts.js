@@ -1,25 +1,30 @@
 $(document).ready(function() {
   $("form").submit(function(event) {
-    alert("hi");
 
-    var inputIds = ["dairy", "meat"];
+    //try to let Jquery get the input type text
+    //var inputIds = ["dairy", "meat"];
+    //var allInputs = $(":input");
+    //BINGO! gets input text inputs  and their values!!!
     var inputValues = [];
-
-    inputIds.forEach(function(inputId){
-      inputValue = $("input#" + inputId).val();
-      alert(inputValue);
-      inputValues.push(inputValue);
-    });
-    var sortedInputValues = inputValues.sort();
-    alert(inputValues);
-
-// need to debug from here
-    var inputValuesUpper = sortedInputValues.map(function(sortedInputValue){
-      inputValue.toUpperCase();
+    $("form input[type=text]").each(function() {
+      input = $(this);
+      value = input.val();
+      inputValues.push(value);
     });
 
-    inputValuesUpper.foreach(function(inputValueUpper){
-      $("#newList ul").append(inputValueUpper);
+    // inputIds.forEach(function(inputId){
+    //   inputValue = $("input#" + inputId).val();
+    //   inputValues.push(inputValue);
+    // });
+
+    //sort 2 upper
+    var inputValuesUpper = (inputValues.sort()).map(function(sortedInputValue){
+      return sortedInputValue.toUpperCase();
+    });
+
+    $("#list > *").show();
+    inputValuesUpper.forEach(function(inputValueUpper) {
+      $("#list ul").append("<li>" + inputValueUpper + "</li>");
     });
 
     event.preventDefault();
