@@ -7,8 +7,7 @@ $(document).ready(function() {
     //BINGO! gets input text inputs  and their values!!!
     var inputValues = [];
     $("form input[type=text]").each(function() {
-      input = $(this);
-      value = input.val();
+      value = $(this).val();
       inputValues.push(value);
     });
 
